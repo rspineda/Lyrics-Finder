@@ -2,10 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+//para cambiar el color primary de MaterialUI
+const temaEditado= createMuiTheme({
+  palette: {
+    primary: {
+      main: '#61DAFB'
+    }
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={temaEditado}>
+      <App />
+    </ThemeProvider>   
   </React.StrictMode>,
   document.getElementById('root')
 );
