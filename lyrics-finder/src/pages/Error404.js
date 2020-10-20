@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link, useLocation} from 'react-router-dom';
-import {Alert, AlertTitle} from '@material-ui/lab'
+import {Alert, AlertTitle} from '@material-ui/lab';
+import IconButton from '@material-ui/core/IconButton';
+import HomeIcon from '@material-ui/icons/Home';
 
 const Error404 = () => {
     let url = useLocation();
@@ -13,6 +15,13 @@ const Error404 = () => {
                     Recurso <b><i>{url.pathname}</i></b> no encontrado
                 </p>
             </Alert>
+            <div style={{margin:'1rem auto', textAlign:'center'}}>
+                <Link to="/">
+                    <IconButton color="primary">
+                        <HomeIcon></HomeIcon>
+                    </IconButton>
+                </Link>
+            </div>
         </>
 
     )
