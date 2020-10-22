@@ -39,8 +39,18 @@ const Finder = ({search, setSearch, setError}) => {
             <IconButton color="primary" type="reset">
                 <HomeIcon></HomeIcon>
             </IconButton>
-            <TextField id="artist" name="artist" label="Artista" variant="outlined" size="small" required/>
-            <TextField id="song" name="song" label="Canción" variant="outlined" size="small" required/>
+            <TextField id="artist" name="artist" label="Artista" variant="outlined" size="small" 
+            value={search.artist}
+            onChange={ e => {
+                setSearch({...search, artist: e.target.value, request: false })
+            }}
+            required/>
+            <TextField id="song" name="song" label="Canción" variant="outlined" size="small" 
+            value={search.song}
+            onChange={ e => {
+                setSearch({...search, song: e.target.value, request: false })
+            }}
+            required/>
             <IconButton color="primary" type="submit">
                 <SearchIcon></SearchIcon>
             </IconButton>
