@@ -36,7 +36,7 @@ function App() {
           <main className="App-main">
             <Switch>
               <Route exact path="/">
-                <Finder></Finder>
+                <Finder search={search} setSearch={setSearch} setError={setError}></Finder>
                 <Home></Home>
               </Route>
               <Route path="/cancion/:id" children={<Cancion></Cancion>}></Route>

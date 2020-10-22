@@ -19,10 +19,23 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-const Finder = () => {
+const Finder = ({search, setSearch, setError}) => {
     const classes = useStyles();
+    const handleSubmit = e => {
+        //alert("Enviando");
+        e.preventDefault();
+        setSearch({
+            artist: e.target.artist.value,
+            song: e.target.song.value,
+            request: true
+        })
+
+    }
+    const handleReset = e => {
+        alert("Reseteando")
+    }
     return (
-        <form className={classes.root} autoComplete="on">
+        <form className={classes.root} autoComplete="on"  onSubmit={handleSubmit} onReset={handleReset}>
             <IconButton color="primary" type="reset">
                 <HomeIcon></HomeIcon>
             </IconButton>
