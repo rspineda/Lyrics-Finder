@@ -32,8 +32,16 @@ const Finder = ({search, setSearch, setError}) => {
 
     }
     const handleReset = e => {
-        alert("Reseteando")
+        //alert("Reseteando");
+        setSearch({
+            artist: "",
+            song: "",
+            request: false
+        });
+
+        setError(false);
     }
+    
     return (
         <form className={classes.root} autoComplete="on"  onSubmit={handleSubmit} onReset={handleReset}>
             <IconButton color="primary" type="reset">
