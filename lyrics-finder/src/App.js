@@ -43,7 +43,15 @@ function App() {
         console.log('el Json del artista',artistJson);
         console.log('el Json de la cancion',songJson);
 
+        setCurrentSong({
+          artist: artistJson.artists[0].strArtist,
+          avatar: artistJson.artists[0].strArtistThumb,
+          song: song,
+          lyrics: songJson.lyrics
+        })
+
       }catch(error){
+        console.log(error)
         setSearch({
           artist: artist,
           song: song,
