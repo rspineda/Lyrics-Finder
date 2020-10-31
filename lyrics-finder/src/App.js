@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Finder from './components/Finder';
 import Lyric from './components/lyric';
 import SongsList from './components/SongsList';
+import Loader from './components/Loader';
 
 
 function App() {
@@ -78,10 +79,10 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Finder search={search} setSearch={setSearch} setError={setError}></Finder>
-                {(!search.request)? null : (
-                  <Lyric currentSong={currentSong} setCurrentSong={setCurrentSong} mySongs={mySongs} setMySongs={setMySongs} setSearch={setSearch}></Lyric>
+                {(!search.request)? (error?(<h1>Mensaje de Error</h1>): <SongsList mySongs={mySongs} setMySongs={setMySongs}></SongsList>) : ( Object.keys(currentSong).length === 0 ? (<Loader></Loader>) : (
+                  <Lyric currentSong={currentSong} setCurrentSong={setCurrentSong} mySongs={mySongs} setMySongs={setMySongs} setSearch={setSearch}></Lyric>)
                 )}
-                <SongsList mySongs={mySongs} setMySongs={setMySongs}></SongsList>      
+                      
                 <Home></Home>
               </Route>
               <Route path="/cancion/:id" children={<Cancion></Cancion>}></Route>
