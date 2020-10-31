@@ -10,7 +10,7 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import LaunchIcon from "@material-ui/icons/Launch";
 import Alert from "@material-ui/lab/Alert";
-//import AlertDialog from "./AlertDialog";
+import AlertDialog from "./AlertDialog";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,6 +34,12 @@ const useStyles = makeStyles(theme => ({
 const SongsList = ({mySongs, setMySongs})=>{
     const classes = useStyles();
 
+    const deleteSong = (id) => {
+      let songs = mySongs.filter((item, index)=> index!==id);
+      setMySongs(songs);
+      localStorage.setItem('mySongs', JSON.stringify(songs)); 
+    }
+
     return (
         <div className={classes.root}>
             <div className={classes.demo}>
@@ -46,6 +52,12 @@ const SongsList = ({mySongs, setMySongs})=>{
                             <Avatar alt={item.artist} src={item.avatar}></Avatar>
                         </ListItemAvatar>
                         <ListItemText primary={item.song} secondary={item.artist}></ListItemText>
+                        <ListItemSecondaryAction>
+                          <IconButton edge="end" component={Link} to={`/cancion/${index}`}>
+                            <LaunchIcon />
+                          </IconButton>
+                          <AlertDialog id={index} deleteSong={deleteSong}></AlertDialog>
+                        </ListItemSecondaryAction>
                     </ListItem>))} 
                 </List>
                 )}
