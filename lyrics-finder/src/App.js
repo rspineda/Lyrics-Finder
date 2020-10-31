@@ -7,6 +7,8 @@ import Error404 from './pages/Error404';
 import Cancion from './pages/Song';
 import Home from './pages/Home';
 import Finder from './components/Finder';
+import Lyric from './components/lyric';
+import SongsList from './components/SongsList';
 
 
 function App() {
@@ -76,6 +78,10 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Finder search={search} setSearch={setSearch} setError={setError}></Finder>
+                {(!search.request)? null : (
+                  <Lyric currentSong={currentSong} setCurrentSong={setCurrentSong} mySongs={mySongs} setMySongs={setMySongs} setSearch={setSearch}></Lyric>
+                )}
+                <SongsList mySongs={mySongs} setMySongs={setMySongs}></SongsList>      
                 <Home></Home>
               </Route>
               <Route path="/cancion/:id" children={<Cancion></Cancion>}></Route>
