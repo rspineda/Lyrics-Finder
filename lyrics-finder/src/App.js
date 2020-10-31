@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import './App.css';
 import Header from './components/Header';
 import Error404 from './pages/Error404';
-import Cancion from './pages/Song';
+import Song from './pages/Song';
 import Home from './pages/Home';
 import Finder from './components/Finder';
 import Lyric from './components/lyric';
@@ -94,7 +94,7 @@ function App() {
                       
                 <Home></Home>
               </Route>
-              <Route path="/cancion/:id" children={<Cancion></Cancion>}></Route>
+              <Route path="/cancion/:id" children={<Song mySongs={mySongs}></Song>}></Route>
               <Route path="*" component={Error404}></Route>
             </Switch>
 
