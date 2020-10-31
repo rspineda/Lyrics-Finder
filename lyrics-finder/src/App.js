@@ -10,6 +10,7 @@ import Finder from './components/Finder';
 import Lyric from './components/lyric';
 import SongsList from './components/SongsList';
 import Loader from './components/Loader';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
   const [error, setError] = useState(false);
 
   useEffect(()=>{
-    localStorage.getItem('mySongs');
+    localStorage.setItem('mySongs', JSON.stringify(mySongs));
     const getData = async () => {
       const {artist, song} = search;
       try{
@@ -79,7 +80,15 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <Finder search={search} setSearch={setSearch} setError={setError}></Finder>
-                {(!search.request)? (error?(<h1>Mensaje de Error</h1>): <SongsList mySongs={mySongs} setMySongs={setMySongs}></SongsList>) : ( Object.keys(currentSong).length === 0 ? (<Loader></Loader>) : (
+                {(!search.request)? (error?(
+                <Alert severity="error" style={{maxWidth: 752, margin: "2rem auto 0"}}>
+                  <AlertTitle>Error</AlertTitle>
+                  Error al consultar la petición:
+                  <ul>
+                    <li>El artista: <b>{search.artist}</b> o</li>
+                    <li>La canción <b>{search.song}</b></li>
+                  </ul>
+                </Alert>): <SongsList mySongs={mySongs} setMySongs={setMySongs}></SongsList>) : ( Object.keys(currentSong).length === 0 ? (<Loader></Loader>) : (
                   <Lyric currentSong={currentSong} setCurrentSong={setCurrentSong} mySongs={mySongs} setMySongs={setMySongs} setSearch={setSearch}></Lyric>)
                 )}
                       
